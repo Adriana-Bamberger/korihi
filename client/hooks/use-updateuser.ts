@@ -12,7 +12,7 @@ export function useUpdateUser() {
       personal_pronouns?: string
     }) => {
       const res = await request
-        .put(`${API_HOST}/api/v1/users/${PASSWORD}`)
+        .put(`${API_HOST}/api/v1/users/${USERNAME}`)
         .auth(USERNAME, PASSWORD, { type: 'basic' })
         .send(values)
 

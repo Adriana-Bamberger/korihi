@@ -78,7 +78,7 @@ You should see a list of posts presented as a JSON document
 
 - [ ] Run the tests for the timeline page
 
-      Filter to these specific tests with`npm test -- TimelinePageShowsPosts`
+  Filter to these specific tests with `npm test -- TimelinePageShowsPosts`
 
 ## 2. Writing posts
 

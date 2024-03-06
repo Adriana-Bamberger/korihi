@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
 import Profile from '../components/Profile.tsx'
 import PostsBy from '../components/PostsBy.tsx'
-import useCredentials from '../hooks/use-auth.ts'
 import { useUserData } from '../hooks/use-userdata.ts'
 import { USERNAME } from '../env.ts'
+
 export default function ProfilePage() {
   const { username } = useParams()
   if (!username) {

@@ -80,6 +80,8 @@ You should see a list of posts presented as a JSON document
 
   Filter to these specific tests with `npm test -- TimelinePageShowsPosts`
 
+  **WARNING**: the tests expect your request to go to exactly `https://korihi.devacademy.life/api/v1/posts`, without an extra `/` at the end. The API in this case doesn't care but your tests will fail if you add the unwanted `/`.
+
 ## 2. Writing posts
 
 - [ ] write a post with Bruno/Thunderclient

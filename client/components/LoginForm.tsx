@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import useCredentials from '../hooks/use-auth.ts'
 import ErrorMessage from './ErrorMessage.tsx'
 
@@ -11,10 +11,10 @@ export default function LoginForm() {
     login(formState)
   }
 
-  const handleChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.currentTarget
     setFormState((st) => ({ ...st, [name]: value }))
-  }, [])
+  }
 
   const handleLogout = (evt: FormEvent) => {
     evt.preventDefault()

@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  KeyboardEvent,
-  useCallback,
-  useState,
-  useRef,
-} from 'react'
+import { ChangeEvent, FormEvent, KeyboardEvent, useState, useRef } from 'react'
 import { useReplyTo } from '../hooks/use-posts'
 import ErrorMessage from './ErrorMessage'
 interface Props {
@@ -17,7 +10,7 @@ export default function WriteReplyForm({ id }: Props) {
   const [formState, setFormState] = useState({ text: '' })
   const form = useRef<HTMLFormElement>(null)
 
-  const submit = useCallback(() => {
+  const submit = () => {
     if (replyTo.isPending || !form.current) {
       return
     }
@@ -29,29 +22,23 @@ export default function WriteReplyForm({ id }: Props) {
     if (text && typeof text === 'string') {
       replyTo.mutate({ text, id })
     }
-  }, [replyTo, id])
+  }
 
-  const handleSubmit = useCallback(
-    (evt: FormEvent<HTMLFormElement>) => {
-      evt.preventDefault()
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault()
+    submit()
+  }
+
+  const handleKeyDown = (evt: KeyboardEvent) => {
+    if (evt.key === 'Enter' && evt.ctrlKey) {
       submit()
-    },
-    [submit],
-  )
+    }
+  }
 
-  const handleKeyDown = useCallback(
-    (evt: KeyboardEvent) => {
-      if (evt.key === 'Enter' && evt.ctrlKey) {
-        submit()
-      }
-    },
-    [submit],
-  )
-
-  const handleChange = useCallback((evt: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = evt.currentTarget
     setFormState((prev) => ({ ...prev, [name]: value }))
-  }, [])
+  }
 
   return (
     <form

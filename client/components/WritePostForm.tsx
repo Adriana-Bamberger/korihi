@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  KeyboardEvent,
-  useCallback,
-  useState,
-} from 'react'
+import { ChangeEvent, FormEvent, KeyboardEvent, useState } from 'react'
 import { useCreatePost } from '../hooks/use-posts'
 import ErrorMessage from './ErrorMessage'
 
@@ -12,7 +6,7 @@ export default function WritePostForm() {
   const createPost = useCreatePost()
   const [formState, setFormState] = useState({ text: '' })
 
-  const submit = useCallback(() => {
+  const submit = () => {
     if (createPost.isPending) {
       return
     }
@@ -23,29 +17,23 @@ export default function WritePostForm() {
     if (text && typeof text === 'string') {
       createPost.mutate({ text })
     }
-  }, [createPost, formState])
+  }
 
-  const handleKeyDown = useCallback(
-    (evt: KeyboardEvent) => {
-      if (evt.key === 'Enter' && evt.ctrlKey) {
-        submit()
-      }
-    },
-    [submit],
-  )
-
-  const handleSubmit = useCallback(
-    (evt: FormEvent<HTMLFormElement>) => {
-      evt.preventDefault()
+  const handleKeyDown = (evt: KeyboardEvent) => {
+    if (evt.key === 'Enter' && evt.ctrlKey) {
       submit()
-    },
-    [submit],
-  )
+    }
+  }
 
-  const handleChange = useCallback((evt: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault()
+    submit()
+  }
+
+  const handleChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = evt.currentTarget
     setFormState((prev) => ({ ...prev, [name]: value }))
-  }, [])
+  }
 
   return (
     <form

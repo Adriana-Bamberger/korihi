@@ -84,7 +84,7 @@ You should see a list of posts presented as a JSON document
 
 ## 2. Writing posts
 
-- [ ] Write a post with Bruno/Thunderclient
+- [ ] Write a post with Thunderclient
 
   We write a post by sending a POST request to `/api/v1/posts`
 

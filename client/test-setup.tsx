@@ -24,7 +24,7 @@ export function renderRoute(route = '/') {
   const screen = render(
     <QueryClientProvider client={client}>
       <RouterProvider router={router} />
-    </QueryClientProvider>,
+    </QueryClientProvider>
   )
 
   return { ...screen, user }

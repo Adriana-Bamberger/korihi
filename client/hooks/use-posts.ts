@@ -33,13 +33,17 @@ export function usePost(id: number) {
 }
 
 export function usePosts() {
-  // TODO: replace this with a real implementation
-  return {
-    isPending: true,
-    isError: false,
-    data: null as null | { items: [] },
-    error: null,
-  }
+  console.log(`${API_HOST}/api/v1/posts`)
+  return useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const res = await request
+        .get(`${API_HOST}/api/v1/posts`)
+        .auth(USERNAME, PASSWORD, { type: 'basic' })
+
+      return res.body as PagedPosts
+    },
+  })
 }
 
 export function usePostsBy(author: string) {
